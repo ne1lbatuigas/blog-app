@@ -8,8 +8,8 @@ Route::get('/', function () {
 
 Route::get('/authors', function () {
     $authors = [
-        ["name" => "Alice","skill" => 75, "id" => "1"],
-        ["name" => "Bob","skill" => 45, "id" => "2"],
+        ["name" => "Alice","publishcount" => 75, "id" => "1"],
+        ["name" => "Bob","publishcount" => 45, "id" => "2"],
     ];
 
     return view('authors.index', ["greeting" => "hello", "authors" => $authors]);

@@ -4,7 +4,7 @@
   <ul>
     @foreach($authors as $author)
       <li>
-        <x-card href="/authors/{{ $author['id'] }}" :highlight="$author['skill'] > 70">
+        <x-card href="/authors/{{ $author['id'] }}" :highlight="$author['publishcount'] > 70">
           <h3>{{ $author['name'] }}</h3>
         </x-card>
       </li>
