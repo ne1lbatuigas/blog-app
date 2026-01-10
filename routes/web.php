@@ -1,25 +1,21 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthorController;
+use Illuminate\Container\Attributes\Auth;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/authors', function () {
-    $authors = [
-        ["name" => "Alice","publishcount" => 75, "id" => "1"],
-        ["name" => "Bob","publishcount" => 45, "id" => "2"],
-    ];
+Route::get('/authors', [
+    AuthorController::class, 'index'
+])->name('authors.index');
 
-    return view('authors.index', ["greeting" => "hello", "authors" => $authors]);
-});
+Route::get('/authors/create', [
+    AuthorController::class, 'create'
+])->name('authors.create');
 
-Route::get('/authors/create', function () {
-    return view('authors.create');
-});
-
-Route::get('/authors/{id}', function ($id) {
-
-    return view('authors.show', ["id" => $id]);
-});
+Route::get('/authors/{id}', [
+    AuthorController::class, 'show'
+])->name('authors.show');

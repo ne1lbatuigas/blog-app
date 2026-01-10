@@ -11,8 +11,8 @@
   <header>
     <nav>
       <h1>Blog Koto</h1>
-      <a href="/authors">All Authors</a>
-      <a href="/authors/create">Create New Author</a>
+      <a href="{{ route('authors.index') }}">All Authors</a>
+      <a href="{{ route('authors.create') }}">Create New Author</a>
     </nav>
   </header>
 
