@@ -29,9 +29,18 @@ class AuthorController extends Controller
       return view('authors.create', ["affiliation" => $affiliations]);
     }
 
-    public function store() {
+    public function store(Request $request) {
       // --> /authors/ (POST)
-      // hanlde POST request to store a new author record in table
+      $validated = $request->validate([
+        'name' => 'required|string|max:255',
+        'publishcount' => 'required|integer|min:0|max:100',
+        'bio' => 'required|string|min:20|max:1000',
+        'affiliation_id' => 'required|exists:affiliations,id',
+      ]);
+
+      Author::create($validated);
+
+      return redirect()->route('authors.index')->with('success', 'Author created successfully.');
     }
 
     public function destroy($id) {

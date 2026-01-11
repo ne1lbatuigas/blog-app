@@ -11,6 +11,7 @@ class Author extends Model
         'name',
         'publishcount',
         'bio',
+        'affiliation_id',
     ];
 
     /** @use HasFactory<\Database\Factories\AuthorFactory> */

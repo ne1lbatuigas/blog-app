@@ -1,5 +1,5 @@
 <x-layout>
-  <form action="" method="">
+  <form action="{{ route('authors.store') }}" method="POST">
     @csrf
 
     <h2>Create a New Author</h2>
@@ -20,6 +20,7 @@
       type="number" 
       id="publishcount" 
       name="publishcount" 
+      value="{{ old('publishcount') }}" 
       required
     >
 
@@ -28,16 +29,16 @@
     <textarea
       rows="5"
       id="bio" 
-      name="bio" 
+      name="bio"
       required
-    ></textarea>
+    >{{ old('bio') }}</textarea>
 
     <!-- select an affiliation -->
     <label for="affiliation_id">Affiliation:</label>
     <select id="affiliation_id" name="affiliation_id" required>
       <option value="" disabled selected>Select an affiliation</option>
       @foreach($affiliation as $affiliations)
-        <option value="{{ $affiliations->id }}">
+        <option value="{{ $affiliations->id }}" {{ $affiliations->id == old('affiliation_id') ? 'selected' : '' }}>
           {{ $affiliations->name }}
         </option>
       @endforeach
@@ -46,6 +47,12 @@
     <button type="submit" class="btn mt-4">Create Author</button>
 
     <!-- validation errors -->
-    
+    @if ($errors->any())
+      <ul class="px-4 py-2 bg-red-100">
+        @foreach ($errors->all() as $error)
+          <li class="my-2 text-red-500">{{ $error }}</li>
+        @endforeach
+      </ul>
+    @endif
   </form>
 </x-layout>
