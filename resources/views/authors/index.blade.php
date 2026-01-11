@@ -5,7 +5,10 @@
     @foreach($authors as $author)
       <li>
         <x-card href="{{ route('authors.show', $author->id) }}" :highlight="$author['publishcount'] > 70">
-          <h3>{{ $author->name }}</h3>
+          <div>
+            <h3>{{ $author->name }}</h3>
+            <p>{{ $author->affiliation->name }}</p>
+          </div>
         </x-card>
       </li>
     @endforeach

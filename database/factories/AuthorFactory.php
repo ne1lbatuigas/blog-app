@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Affiliations;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Author>
@@ -20,6 +21,7 @@ class AuthorFactory extends Factory
             'name' => fake()->name(),
             'bio' => fake()->paragraph(),
             'publishcount' => fake()->numberBetween(0, 100),
+            'affiliation_id' => Affiliations::inRandomOrder()->first()->id,
         ];
     }
 }
