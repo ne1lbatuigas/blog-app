@@ -16,10 +16,14 @@ Route::get('/authors/create', [
     AuthorController::class, 'create'
 ])->name('authors.create');
 
-Route::get('/authors/{id}', [
+Route::get('/authors/{author}', [
     AuthorController::class, 'show'
 ])->name('authors.show');
 
 Route::post('/authors', [
     AuthorController::class, 'store'
 ])->name('authors.store');
+
+Route::delete('/authors/{author}', [
+    AuthorController::class, 'destroy'
+])->name('authors.destroy');

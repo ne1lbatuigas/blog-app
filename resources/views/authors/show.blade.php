@@ -13,4 +13,10 @@
     <p><strong>Location:</strong> {{ $author->affiliation->location }}</p>
     <p><strong>About the Affiliation:</strong> {{ $author->affiliation->description }}</p>
   </div>
+
+  <form action="{{ route('authors.destroy', $author->id) }}" method="POST">
+    @csrf
+    @method('DELETE')
+    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this author?')">Delete Author</button>
+
 </x-layout>

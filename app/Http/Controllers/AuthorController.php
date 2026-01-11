@@ -15,9 +15,9 @@ class AuthorController extends Controller
       return view('authors.index', ["authors" => $authors]);
     }
 
-    public function show($id) {
+    public function show(Author $author) {
       // route --> /authors/{id}
-      $author = Author::with('affiliation')->findOrFail($id);
+      $author->load('affiliation');
 
       return view('authors.show', ["author" => $author]);
     }
@@ -43,8 +43,10 @@ class AuthorController extends Controller
       return redirect()->route('authors.index')->with('success', 'Author created successfully.');
     }
 
-    public function destroy($id) {
+    public function destroy(Author $author) {
       // --> /authors/{id} (DELETE)
-      // handle delete request to delete an author record from table
+      $author->delete();
+
+      return redirect()->route('authors.index')->with('success', 'Author deleted successfully.');
     }
 }
