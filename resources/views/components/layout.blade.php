@@ -15,7 +15,9 @@
   
   <header>
     <nav>
-      <h1>Blog Koto</h1>
+      <h1>
+        <a href="{{ route('authors.index') }}">Blog Koto</a>
+      </h1>
       <a href="{{ route('authors.index') }}">All Authors</a>
       <a href="{{ route('authors.create') }}">Create New Author</a>
 
