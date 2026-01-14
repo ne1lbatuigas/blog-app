@@ -9,29 +9,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('register', [
-    AuthController::class, 'showRegister'
-    ])->name('show.register');
-Route::get('login', [
-    AuthController::class, 'showLogin'
-    ])->name('show.login');
+Route::get('/register', [AuthController::class, 'showRegister'])->name('show.register');
+Route::get('/login', [AuthController::class, 'showLogin'])->name('show.login');
+Route::post('/register', [AuthController::class, 'register'])->name('register');
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::get('/authors', [
-    AuthorController::class, 'index'
-])->name('authors.index');
-
-Route::get('/authors/create', [
-    AuthorController::class, 'create'
-])->name('authors.create');
-
-Route::get('/authors/{author}', [
-    AuthorController::class, 'show'
-])->name('authors.show');
-
-Route::post('/authors', [
-    AuthorController::class, 'store'
-])->name('authors.store');
-
-Route::delete('/authors/{author}', [
-    AuthorController::class, 'destroy'
-])->name('authors.destroy');
+Route::get('/authors', [AuthorController::class, 'index'])->name('authors.index');
+Route::get('/authors/create', [AuthorController::class, 'create'])->name('authors.create');
+Route::get('/authors/{author}', [AuthorController::class, 'show'])->name('authors.show');
+Route::post('/authors', [AuthorController::class, 'store'])->name('authors.store');
+Route::delete('/authors/{author}', [AuthorController::class, 'destroy'])->name('authors.destroy');
