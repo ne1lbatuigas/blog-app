@@ -18,6 +18,9 @@
       <h1>Blog Koto</h1>
       <a href="{{ route('authors.index') }}">All Authors</a>
       <a href="{{ route('authors.create') }}">Create New Author</a>
+
+      <a href="{{ route('show.login') }}" class="btn">Login</a>
+      <a href="{{ route('show.register') }}" class="btn">Register</a>
     </nav>
   </header>
 
