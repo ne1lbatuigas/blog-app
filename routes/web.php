@@ -9,14 +9,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/register', [AuthController::class, 'showRegister'])->name('show.register');
-Route::get('/login', [AuthController::class, 'showLogin'])->name('show.login');
-Route::post('/register', [AuthController::class, 'register'])->name('register');
-Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::middleware('guest')->controller(AuthController::class)->group(function () {
+    Route::get('/register', 'showRegister')->name('show.register');
+    Route::get('/login', 'showLogin')->name('show.login');
+    Route::post('/register', 'register')->name('register');
+    Route::post('/login', 'login')->name('login');
+});
+
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::get('/authors', [AuthorController::class, 'index'])->name('authors.index');
-Route::get('/authors/create', [AuthorController::class, 'create'])->name('authors.create');
-Route::get('/authors/{author}', [AuthorController::class, 'show'])->name('authors.show');
-Route::post('/authors', [AuthorController::class, 'store'])->name('authors.store');
-Route::delete('/authors/{author}', [AuthorController::class, 'destroy'])->name('authors.destroy');
+Route::middleware('auth')->controller(AuthorController::class)->group(function () {
+    Route::get('/authors', 'index')->name('authors.index');
+    Route::get('/authors/create', 'create')->name('authors.create');
+    Route::get('/authors/{author}', 'show')->name('authors.show');
+    Route::post('/authors', 'store')->name('authors.store');
+    Route::delete('/authors/{author}', 'destroy')->name('authors.destroy');
+});
